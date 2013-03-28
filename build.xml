@@ -1,0 +1,28 @@
+<project name="micrompeg" default="dist" basedir=".">
+      <description> build file for micrompeg
+      </description>
+
+     <property name="src" location="src"/>
+     <property name="build" location="build"/>
+     <property name="dist" location="dist"/>
+     <property name="platform" location="pc"/>
+      <target name="init">
+      <tstamp/>
+      <mkdir dir="${build}"/>
+      </target>
+
+      <target name="compile" depends="init" description="compile the source">
+         <javac srcdir="${src}:${platform}" destdir="${build}" debug="on"/>
+      </target>
+      
+      <target name="dist" depends="compile" description="generate the dist">
+         <mkdir dir="${dist}/lib"/>
+         <jar jarfile="${dist}/lib/micrompeg-${DSTAMP}.jar" basedir="${build}"/>
+      </target>
+
+      <target name="clean" description="clean everything">
+           <delete dir="${build}"/>
+           <delete dir="${dist}"/>
+      </target>
+</project>
+      
